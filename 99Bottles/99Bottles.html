@@ -1,0 +1,65 @@
+<!---Note to examiner;
+  I DID not separate out my css and js into separate files, hope this is ok in this case!-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>99 bottles</title>
+    <!--PAGE CSS HERE-->
+    <style></style>
+  </head>
+
+  <body>
+    <!--PAGE CONTENT HERE-->
+    <div class="container">
+      <p>Do you want to know the lyrics to 99 Bottles of Beer on the Wall?</p>
+      <button onclick="bottles();">Click Me!!</button>
+      <p id="lyrics"></p>
+    </div>
+    <!--PAGE JS HERE-->
+    <script>
+      function bottles() {
+        document.getElementById("lyrics").innerHTML = "";
+        document.getElementById("lyrics").innerHTML +=
+          "🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻<br>";
+        for (i = 99; i > 0; i--) {
+          if (i == 1) {
+            document.getElementById("lyrics").innerHTML +=
+              i + " bottle of beer on the wall, ";
+            document.getElementById("lyrics").innerHTML +=
+              i + " bottle of beer,<br>";
+            document.getElementById("lyrics").innerHTML +=
+              "You take one down and pass it around, no more bottles of beer on the wall. <br><br> No more bottles of beer on the wall, no more bottles of beer. <br> Go to the store and buy some more, 99 bottles of beer on the wall";
+          } else if (i == 2) {
+            document.getElementById("lyrics").innerHTML +=
+              i +
+              " bottles of beer on the wall, " +
+              i +
+              " bottles of beer,<br>";
+            document.getElementById("lyrics").innerHTML +=
+              "You take one down and pass it around, ";
+            document.getElementById("lyrics").innerHTML +=
+              i - 1 + " bottle of beer on the wall<br>";
+            document.getElementById("lyrics").innerHTML += "<br>";
+          } else {
+            document.getElementById("lyrics").innerHTML +=
+              i +
+              " bottles of beer on the wall, " +
+              i +
+              " bottles of beer,<br>";
+            document.getElementById("lyrics").innerHTML +=
+              "You take one down and pass it around, ";
+            document.getElementById("lyrics").innerHTML +=
+              i - 1 + " bottles of beer on the wall<br>";
+            document.getElementById("lyrics").innerHTML += "<br>";
+          }
+        }
+        document.getElementById("lyrics").innerHTML +=
+          "<br>🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻🍻";
+      }
+    </script>
+  </body>
+</html>

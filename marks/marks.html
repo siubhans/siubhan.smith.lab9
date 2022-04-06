@@ -1,0 +1,147 @@
+<!---Note to examiner;
+  I DID not separate out my css and js into separate files, hope this is ok in this case!-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudentMark</title>
+    <!--PAGE CSS HERE-->
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      .containerForButton {
+        display: flex;
+        justify-content: center;
+      }
+      button {
+        background-color: #9fd3c7;
+        padding: 20px;
+        border: none;
+        border-radius: 7px;
+        margin-top: 20px;
+        font-size: 40px;
+      }
+      button:hover {
+        background-color: #142d4c;
+        color: #ececec;
+      }
+      .box {
+        background-color: #385170;
+        height: 50px;
+        width: 100%;
+      }
+      #here {
+        font-size: 30px;
+        text-align: center;
+      }
+      #there {
+        font-size: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--PAGE CONTENT HERE-->
+    <div class="box"></div>
+    <div class="containerForButton">
+      <button onclick="studentMarks();">Enter your marks here!</button>
+    </div>
+    <p id="here"></p>
+    <p id="there"></p>
+    <div class="box"></div>
+
+    <!--PAGE JS HERE-->
+
+    <script>
+      //declared variables here
+      var students;
+      var marks;
+      var grade;
+      var total;
+      var average;
+
+      //this prints out the grade put in by the user
+      function gradePrinter() {
+        document.getElementById("here").innerHTML += " " + grade;
+      }
+      //this prints out the average grade
+      function averagePrinter() {
+        document.getElementById("there").innerHTML +=
+          "Your average is " + average;
+        document.getElementById("there").innerHTML += "<br>";
+      }
+      //this uses the total created in the loop to calculate an average grade
+      function averageCalc() {
+        average = total / subjects;
+        average = average.toFixed(2);
+      }
+
+      function studentMarks() {
+        //if the button is clicked again we clear out the total and the text
+        total = 0;
+        document.getElementById("here").innerHTML = " ";
+        //USER PROMPT!
+        subjects = parseInt(prompt("How many subjects did you take?"));
+
+        for (i = 0; i < subjects; i++) {
+          //USER PROMPT!
+          marks = parseFloat(prompt("What were your marks"));
+          //this loop takes the marks and adds them together to creaete a total mark
+          total = total + marks;
+          //this prints the mark that the user has entered
+          document.getElementById("here").innerHTML += marks + ", ";
+          //this is the loop that calculates what grade the mark is
+          if (marks <= 100 && marks >= 85) {
+            grade = "A";
+          } else if (marks <= 84.99 && marks >= 70) {
+            grade = "B";
+          } else if (marks <= 69.99 && marks >= 55) {
+            grade = "C";
+          } else if (marks <= 54.99 && marks >= 40) {
+            grade = "D";
+          } else if (marks <= 39.99 && marks >= 25) {
+            grade = "E";
+          } else if (marks <= 24.99 && marks >= 10) {
+            grade = "F";
+          } else if (marks <= 9.99 && marks >= 0) {
+            grade = "NG";
+          } else {
+            alert("You have to enter values between 0-100");
+            //the loop will break if an invalid mark is put in and it will overwrite the p with nothing
+            document.getElementById("here").innerHTML = " ";
+            break;
+          }
+          //this calls the function to print the grade within the loop
+          gradePrinter();
+          //this prints a break before the next loop runs
+          document.getElementById("here").innerHTML += "<br>";
+        }
+        //this calls the average calculation
+        averageCalc();
+        //here we make sure this section is empty before running it again!
+        document.getElementById("there").innerHTML = " ";
+        //this runs a loop to calculate what message we should print for the user, based on their average
+        if (average > 90 && average <= 100) {
+          averagePrinter();
+          document.getElementById("there").innerHTML += "I'm so proud 🥹";
+        } else if (average > 60 && average <= 90) {
+          averagePrinter();
+          document.getElementById("there").innerHTML +=
+            "You are doing well, keep up the good work 👍";
+        } else if (average >= 0 && average <= 60) {
+          averagePrinter();
+          document.getElementById("there").innerHTML +=
+            "You need to pull your socks up 🧦 😥";
+        } else {
+          //no action is taken if the average mark is outside 0-100 (but it should never get here)
+        }
+      }
+    </script>
+  </body>
+</html>
