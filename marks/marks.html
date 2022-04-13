@@ -91,7 +91,9 @@
 
         for (i = 0; i < subjects; i++) {
           //USER PROMPT!
-          marks = parseFloat(prompt("What were your marks"));
+          marks = parseFloat(
+            prompt("What were your marks for subject " + (i + 1))
+          );
           //this loop takes the marks and adds them together to creaete a total mark
           total = total + marks;
           //this prints the mark that the user has entered
